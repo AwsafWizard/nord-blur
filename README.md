@@ -215,3 +215,7 @@ sandbox reproduces most bugs:
   stay opaque there.
 - Live blur costs GPU/CPU whenever what's behind a blurred area changes, e.g.
   a video playing under the dock or behind an app window.
+
+## License
+
+[MIT](LICENSE)
