@@ -1,0 +1,8 @@
+{
+  "uuid": "nord-blur@awsaf",
+  "name": "Nord Blur",
+  "description": "Frosted-glass Nord theme for Pop!_OS 22.04: live background blur under shell menus, the dock, notification banners, the launcher, the OSD and GTK app windows.",
+  "shell-version": ["42"],
+  "url": "https://github.com/AwsafWizard/nord-blur",
+  "version": 1
+}

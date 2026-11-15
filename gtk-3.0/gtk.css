@@ -1,0 +1,107 @@
+/* Nord Blur: translucent windows for GTK3 apps with client-side
+ * decorations (headerbars). The nord-blur shell extension blurs what's
+ * behind the whole window.
+ *
+ * Selectors use the .csd class rather than the window node: some apps rename
+ * their top-level node (gnome-terminal's is terminal-window).
+ *
+ * Window backgrounds are painted as an image over a transparent colour: GTK
+ * marks a window with an opaque background colour as fully opaque, and the
+ * compositor then skips drawing what's behind it, title bar included.
+ *
+ * AMOLED: the window background is black at 75% opacity, and views,
+ * sidebars, lists and tabs are see-through so it shows. Menus and popovers
+ * are opaque black, since nothing blurs what's under them. Pop's GTK3 theme
+ * hard-codes its greys, so each surface is overridden below. User CSS wins over the theme whatever the selector's
+ * specificity, which is why the rules exclude states (selected, focus,
+ * flat, osd) that the theme colours differently. */
+
+@define-color theme_bg_color #000000;
+@define-color theme_base_color #000000;
+@define-color theme_unfocused_bg_color #000000;
+@define-color theme_unfocused_base_color #000000;
+
+/* Window glass opacity: the alpha in these two gradients. */
+
+/* Classic windows (headerbar in the title-bar slot): the background starts
+ * below the title bar. */
+.background.csd:not(.unified):not(.popup):not(.fullscreen) {
+  background-color: transparent;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)); }
+
+/* libhandy windows (.unified) paint the background under their headerbar
+ * too, so leave the headerbar's height (47px in Pop) clear. */
+.background.csd.unified:not(.fullscreen) {
+  background-color: transparent;
+  background-image: linear-gradient(to bottom,
+                                    transparent 47px,
+                                    rgba(0, 0, 0, 0.75) 47px); }
+
+/* The terminal paints its own (translucent) background, and the shell
+ * extension blurs the whole window behind it. */
+terminal-window.background {
+  background: none; }
+
+/* Title bar: a headerbar in the title-bar slot, or headerbars grouped in a
+ * box/paned there (gedit), which doesn't paint a background itself. */
+.csd > headerbar.titlebar,
+.csd > headerbar.titlebar:backdrop,
+.csd > .titlebar headerbar,
+.csd > .titlebar headerbar:backdrop,
+.csd.unified headerbar,
+.csd.unified headerbar:backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+  background-image: none;
+  box-shadow: inset 0 -1px rgba(255, 255, 255, 0.08);
+  border-color: transparent; }
+
+.csd > .titlebar:not(headerbar) {
+  background: none;
+  box-shadow: none; }
+
+/* ---------- AMOLED surfaces ---------- */
+
+/* Server-side-decorated windows (the .csd ones are handled above) get no
+ * blur, so they stay opaque. */
+window.background:not(.csd):not(.popup) {
+  background-color: #000000; }
+
+.view:not(:selected), iconview:not(:selected),
+.view text, iconview text, textview text,
+list,
+notebook > header,
+notebook > stack:not(:only-child) {
+  background-color: transparent; }
+
+.sidebar:not(separator) {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.08); }
+
+separator.sidebar,
+paned > separator,
+separator {
+  background-color: rgba(255, 255, 255, 0.08); }
+
+notebook > header {
+  border-color: rgba(255, 255, 255, 0.08); }
+
+frame > border, .frame,
+actionbar > revealer > box,
+.inline-toolbar, searchbar > revealer > box, .location-bar {
+  border-color: rgba(255, 255, 255, 0.08); }
+
+searchbar > revealer > box,
+.inline-toolbar, .location-bar {
+  background-color: transparent; }
+
+menu, .menu, .context-menu,
+popover.background:not(.osd) {
+  background-color: #0A0A0A;
+  border-color: rgba(255, 255, 255, 0.10); }
+
+entry:not(.flat),
+spinbutton:not(.vertical):not(.flat) {
+  background-color: rgba(255, 255, 255, 0.05); }
+entry:not(.flat):not(:focus):not(.error):not(.warning),
+spinbutton:not(.vertical):not(.flat):not(:focus) {
+  border-color: rgba(255, 255, 255, 0.10); }

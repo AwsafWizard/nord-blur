@@ -1,0 +1,4 @@
+# Written by install.sh: the user's previous dock/terminal settings
+.dock-settings-backup
+.terminal-settings-backup
+*.bak

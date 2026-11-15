@@ -1,0 +1,289 @@
+/*
+ * Nord Blur — frosted-glass shell styling for Pop!_OS 22.04 (GNOME 42).
+ *
+ * Loaded on top of the Pop shell theme, so only what changes is here.
+ * The blur itself comes from extension.js; these rules make surfaces
+ * translucent so it shows through.
+ *
+ * Colours: neutral dark glass rgb(18,18,18), white overlays for cards,
+ * hovers and borders, text #F2F2F2, and Nord frost #88C0D0 as the accent
+ * (sliders, switches, today's date, focus rings).
+ *
+ * Glass strength: the alpha on .popup-menu-content's background-color.
+ * Lower = more see-through, higher = more legible on busy backgrounds.
+ */
+
+/* ---------- Menu surface ---------- */
+
+.popup-menu {
+  color: #F2F2F2; }
+
+.popup-menu-content {
+  background-color: rgba(18, 18, 18, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.30); }
+
+/* ---------- Menu items ---------- */
+
+.popup-menu-item {
+  border-radius: 6px; }
+  .popup-menu-item:focus, .popup-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.10) !important; }
+  .popup-menu-item:focus:active, .popup-menu-item:hover:active,
+  .popup-menu-item:active {
+    background-color: rgba(255, 255, 255, 0.16) !important;
+    color: #F2F2F2; }
+  .popup-menu-item:insensitive {
+    color: rgba(255, 255, 255, 0.45); }
+
+/* Header of an expanded submenu (e.g. "Wifi" when opened) */
+.popup-menu-item:checked {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+  color: #F2F2F2 !important;
+  box-shadow: none;
+  border-radius: 6px 6px 0 0; }
+  .popup-menu-item:checked:focus, .popup-menu-item:checked:hover {
+    background-color: rgba(255, 255, 255, 0.14) !important;
+    color: #F2F2F2 !important; }
+  .popup-menu-item:checked:active {
+    background-color: rgba(255, 255, 255, 0.16) !important;
+    color: #F2F2F2 !important; }
+
+.popup-inactive-menu-item {
+  color: #F2F2F2; }
+  .popup-inactive-menu-item:insensitive {
+    color: rgba(255, 255, 255, 0.45); }
+
+.popup-sub-menu {
+  background-color: rgba(0, 0, 0, 0.18);
+  border-radius: 0 0 6px 6px; }
+  .popup-sub-menu .popup-menu-item:focus, .popup-sub-menu .popup-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.10) !important; }
+  .popup-sub-menu .popup-menu-item:active {
+    background-color: rgba(255, 255, 255, 0.16) !important; }
+  .popup-sub-menu .popup-menu-item:checked {
+    background-color: rgba(255, 255, 255, 0.08) !important; }
+    .popup-sub-menu .popup-menu-item:checked:focus, .popup-sub-menu .popup-menu-item:checked:hover {
+      background-color: rgba(255, 255, 255, 0.12) !important; }
+  .popup-sub-menu .popup-menu-item:last-child,
+  .popup-sub-menu .popup-menu-section:last-child .popup-menu-item:last-child {
+    border-radius: 0 0 6px 6px; }
+
+.popup-separator-menu-item .popup-separator-menu-item-separator,
+.popup-sub-menu .popup-separator-menu-item .popup-separator-menu-item-separator {
+  background-color: rgba(255, 255, 255, 0.10); }
+
+/* ---------- Sliders & switches ---------- */
+
+.slider {
+  -barlevel-background-color: rgba(255, 255, 255, 0.20);
+  -barlevel-border-color: transparent;
+  -barlevel-active-background-color: #88C0D0;
+  -barlevel-active-border-color: #88C0D0;
+  -barlevel-overdrive-color: #BF616A;
+  -barlevel-overdrive-border-color: #BF616A;
+  -slider-handle-border-color: #88C0D0;
+  color: #88C0D0; }
+  .slider:hover, .slider:active {
+    color: #8FBCBB; }
+
+.toggle-switch {
+  background-image: url("assets/toggle-off.svg"); }
+  .toggle-switch:checked {
+    background-image: url("assets/toggle-on.svg"); }
+
+/* ---------- Date menu: calendar column ---------- */
+
+.datemenu-today-button:hover,
+.datemenu-today-button:focus {
+  background-color: rgba(255, 255, 255, 0.08); }
+.datemenu-today-button:active {
+  background-color: rgba(255, 255, 255, 0.14); }
+
+.calendar:hover {
+  background-color: transparent; }
+.calendar .calendar-month-header .calendar-month-label {
+  color: #F2F2F2; }
+.calendar .calendar-month-header .pager-button:hover,
+.calendar .calendar-month-header .pager-button:focus {
+  background-color: rgba(255, 255, 255, 0.10); }
+.calendar .calendar-month-header .pager-button:active {
+  background-color: rgba(255, 255, 255, 0.16); }
+
+.calendar .calendar-day-base:hover {
+  background-color: rgba(255, 255, 255, 0.10); }
+.calendar .calendar-day-base:focus {
+  background-color: rgba(255, 255, 255, 0.10);
+  color: #F2F2F2;
+  box-shadow: inset 0 0 0 2px rgba(136, 192, 208, 0.6); }
+.calendar .calendar-day-base:active, .calendar .calendar-day-base:selected {
+  color: #F2F2F2;
+  background-color: rgba(255, 255, 255, 0.16); }
+  .calendar .calendar-day-base:active:focus, .calendar .calendar-day-base:selected:focus {
+    background-color: rgba(255, 255, 255, 0.14); }
+.calendar .calendar-day-base.calendar-day-heading,
+.calendar .calendar-nonwork-day {
+  color: rgba(255, 255, 255, 0.60); }
+.calendar .calendar-other-month-day {
+  color: rgba(255, 255, 255, 0.35); }
+  .calendar .calendar-other-month-day.calendar-nonwork-day {
+    color: rgba(255, 255, 255, 0.25); }
+
+.calendar .calendar-today {
+  background-color: #88C0D0;
+  color: #121212 !important; }
+  .calendar .calendar-today:hover, .calendar .calendar-today:focus,
+  .calendar .calendar-today:active, .calendar .calendar-today:selected,
+  .calendar .calendar-today:active:hover, .calendar .calendar-today:active:focus,
+  .calendar .calendar-today:selected:hover, .calendar .calendar-today:selected:focus {
+    background-color: #8FBCBB; }
+
+.calendar .calendar-day-with-events {
+  background-image: url("assets/calendar-event.svg"); }
+
+.calendar .calendar-week-number {
+  background-color: rgba(0, 0, 0, 0.18);
+  color: rgba(255, 255, 255, 0.60); }
+
+/* Cards under the calendar: events, world clocks, weather */
+.events-button, .world-clocks-button, .weather-button {
+  color: #F2F2F2;
+  background-color: rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+  border-radius: 8px; }
+  .events-button:hover, .world-clocks-button:hover, .weather-button:hover {
+    color: #F2F2F2;
+    background-color: rgba(255, 255, 255, 0.09); }
+  .events-button:active, .world-clocks-button:active, .weather-button:active {
+    color: #F2F2F2;
+    background-color: rgba(255, 255, 255, 0.11); }
+  .events-button:focus, .world-clocks-button:focus, .weather-button:focus {
+    color: #F2F2F2;
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: inset 0 0 0 2px rgba(136, 192, 208, 0.6); }
+
+/* ---------- Date menu: notification / media column ---------- */
+
+.message-list {
+  border-color: rgba(255, 255, 255, 0.10); }
+
+.message {
+  color: #F2F2F2;
+  background-color: rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+  border-radius: 8px; }
+  .message:hover {
+    color: #F2F2F2;
+    background-color: rgba(255, 255, 255, 0.09); }
+  .message:active {
+    color: #F2F2F2;
+    background-color: rgba(255, 255, 255, 0.11); }
+  .message:focus {
+    color: #F2F2F2;
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: inset 0 0 0 2px rgba(136, 192, 208, 0.6); }
+    .message:focus:hover, .message:focus:active {
+      background-color: rgba(255, 255, 255, 0.11);
+      box-shadow: inset 0 0 0 2px rgba(136, 192, 208, 0.7); }
+  .message .message-body {
+    color: rgba(235, 235, 235, 0.85); }
+  .message .message-secondary-bin > .event-time {
+    color: rgba(255, 255, 255, 0.55); }
+  .message .message-close-button {
+    color: #F2F2F2;
+    background-color: rgba(255, 255, 255, 0.10); }
+    .message .message-close-button:hover {
+      background-color: rgba(255, 255, 255, 0.20); }
+
+.message-media-control {
+  color: #F2F2F2;
+  border-radius: 6px; }
+  .message-media-control:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #F2F2F2; }
+  .message-media-control:active {
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #F2F2F2; }
+  .message-media-control:insensitive {
+    color: rgba(255, 255, 255, 0.40); }
+
+.media-message-cover-icon,
+.media-message-cover-icon.fallback {
+  border-radius: 6px; }
+  .media-message-cover-icon.fallback {
+    color: #E0E0E0;
+    background-color: rgba(18, 18, 18, 0.50);
+    border-color: transparent; }
+
+.message-list-clear-button.button {
+  color: #F2F2F2;
+  background-color: rgba(255, 255, 255, 0.07);
+  border: none;
+  box-shadow: none;
+  border-radius: 6px; }
+  .message-list-clear-button.button:hover, .message-list-clear-button.button:focus {
+    background-color: rgba(255, 255, 255, 0.11); }
+  .message-list-clear-button.button:active {
+    background-color: rgba(255, 255, 255, 0.13); }
+
+/* ---------- Notification banners ---------- */
+
+/* Banners float over arbitrary windows, so they get a denser tint than the
+ * cards inside the date menu (which already sit on the menu's glass). */
+.notification-banner,
+.notification-banner:focus {
+  background-color: rgba(18, 18, 18, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.30); }
+  .notification-banner:hover,
+  .notification-banner:focus:hover {
+    background-color: rgba(34, 34, 34, 0.79); }
+  .notification-banner:active,
+  .notification-banner:focus:active {
+    background-color: rgba(44, 44, 44, 0.81); }
+
+/* ---------- Dialogs, including Pop's Super-key launcher ---------- */
+
+/* Pop's app library loads its own dark.css with an opaque
+   .cosmic-applications-dialog. With equal specificity the stylesheet loaded
+   last wins, and that order changes from session to session, so the second
+   selector outranks it outright. */
+.modal-dialog,
+.modal-dialog.cosmic-applications-dialog {
+  color: #F2F2F2;
+  background-color: rgba(18, 18, 18, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px; }
+
+.pop-shell-search StEntry {
+  color: #F2F2F2;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px; }
+  .pop-shell-search StEntry:focus {
+    border-color: rgba(136, 192, 208, 0.7); }
+
+.pop-shell-search .pop-shell-search-element {
+  border-radius: 6px; }
+  .pop-shell-search .pop-shell-search-element:hover {
+    background-color: rgba(255, 255, 255, 0.08); }
+  .pop-shell-search .pop-shell-search-element:select {
+    background: rgba(255, 255, 255, 0.10);
+    color: #F2F2F2; }
+
+.url-highlighter {
+  link-color: #88C0D0; }
+
+/* ---------- Volume / brightness OSD ---------- */
+
+.osd-window {
+  color: #F2F2F2;
+  background-color: rgba(18, 18, 18, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.30); }
+  .osd-window .level {
+    -barlevel-background-color: rgba(255, 255, 255, 0.20);
+    -barlevel-active-background-color: #88C0D0;
+    -barlevel-overdrive-color: #BF616A; }
